@@ -20,9 +20,9 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/sgoehler/CDActivitySpinner'
   s.authors  = { 'Stefan Goehler' => 'mail@stefan-goehler.de' }
   s.source   = { 
-	:git => 'https://github.com/sgoehler/CDActivitySpinner', 	:tag => '1.0.7'
+	:git => 'https://github.com/sgoehler/CDActivitySpinner.git', 	:tag => '1.0.7'
   }
-  s.source_files = '*.{h,m}'
+  s.source_files = 'Sources/*.{h,m}'
   s.frameworks   = ['QuartzCore']
 
   s.requires_arc = true
