@@ -104,9 +104,9 @@
                                               self.frame.size.height / 2 - radius);
 }
 
-- (void) setFrame:(CGRect)frame
+- (void) layoutSubviews
 {
-    [super setFrame:frame];
+    [super layoutSubviews];
     [self adjustCircleToFrame];
 }
 
