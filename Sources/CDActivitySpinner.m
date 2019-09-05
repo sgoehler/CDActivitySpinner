@@ -2,7 +2,7 @@
 //  CDActivitySpinner.m
 //
 //  Created by Stefan Goehler on 1/6/13.
-//  Copyright (c) 2013-2017 Stefan Goehler. All rights reserved.
+//  Copyright (c) 2013 Stefan Goehler. All rights reserved.
 //
 
 #import "CDActivitySpinner.h"
@@ -16,8 +16,11 @@
 #define kProgressUndefined -1
 
 @interface CDActivitySpinner () <CAAnimationDelegate>
+
 @property (nonatomic, strong) CAShapeLayer* circleLayer;
+
 @property (nonatomic, strong) CAShapeLayer* trackingLayer;
+
 @property (nonatomic, assign) BOOL animationActivated;
 @end
 
@@ -89,7 +92,6 @@
         self.circleLayer.lineWidth = self.lineWidth;
         self.trackingLayer.lineWidth = self.circleLayer.lineWidth;
     }
-    
     NSInteger radius = self.frame.size.height / 2 - self.circleLayer.lineWidth / 2 + .5;
     // Make a circular shape
     self.circleLayer.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2 * radius, 2 * radius)
@@ -133,7 +135,6 @@
         rotationAnimation.removedOnCompletion = FALSE;
         
         [self.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-
         if (self.hidesWhenInactive || self.hidden)
             self.hidden = FALSE;
     }
@@ -189,7 +190,7 @@
         [self stopAnimating];
     }
     
-    if (self.hidden)
+    if (self.hidden && self.hidesWhenInactive)
         self.hidden = FALSE;
     
     [CATransaction begin];
@@ -206,6 +207,8 @@
     _hidesWhenInactive = hidesWhenInactive;
     if (hidesWhenInactive && ![self.layer animationForKey:@"rotationAnimation"])
         self.hidden = TRUE;
+    else if (!hidesWhenInactive)
+        self.hidden = FALSE;
 }
 
 - (BOOL) checkIfAnimationWasStopped
@@ -243,6 +246,10 @@
     
 }
 
+- (NSString*) description
+{
+    return [NSString stringWithFormat:@"%@ - %@", [super description], [self.layer animationForKey:@"rotationAnimation"] ? @"Rotating" : self.progress == kProgressUndefined ? @"Disabled" : [NSString stringWithFormat:@"%.2f", self.progress]];
+}
 
 @end
 

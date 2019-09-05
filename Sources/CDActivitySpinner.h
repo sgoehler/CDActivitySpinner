@@ -2,7 +2,7 @@
 //  CDActivitySpinner.h
 //
 //  Created by Stefan Goehler on 1/6/13.
-//  Copyright (c) 2013-2017 Stefan Goehler. All rights reserved.
+//  Copyright (c) 2013-2019 Stefan Goehler. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
